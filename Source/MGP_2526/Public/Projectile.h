@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/StaticMeshComponent.h"
 #include "Projectile.generated.h"
 
+class UProjectileMovementComponent;
 UCLASS()
 class MGP_2526_API AProjectile : public AActor
 {
@@ -24,8 +26,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
-	class UStaticMeshComponent* ProjectileMesh;
+	UStaticMeshComponent* ProjectileMesh;
 
 	UPROPERTY(EditAnywhere)
-	class UProjectileMovementComponent* ProjectileComponent;
+	UProjectileMovementComponent* ProjectileComponent;
 };
