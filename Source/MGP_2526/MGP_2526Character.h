@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
-#include "MGP_2526Character.generated.h"
+#include "MGP_2526Character.generated.h" 
 
 class USpringArmComponent;
 class UCameraComponent;
@@ -29,7 +29,7 @@ class AMGP_2526Character : public ACharacter
 
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
-	UCameraComponent* FirstPersonCamera;
+	UCameraComponent* FollowCamera;
 	
 protected:
 
@@ -50,7 +50,7 @@ protected:
 	UInputAction* MouseLookAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	UInputAction* InteractAction;
+	UInputAction* Shoot;
 
 public:
 
