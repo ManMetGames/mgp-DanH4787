@@ -53,7 +53,7 @@ AMGP_2526Character::AMGP_2526Character()
 
 void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Test1"));
+	UE_LOG(LogTemp, Warning, TEXT("Test2"));
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
@@ -67,6 +67,9 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::Look);
+
+		//Shooting
+		EnhancedInputComponent->BindAction(Shoot, ETriggerEvent::Triggered, this, &AMGP_2526Character::DoShoot);
 
 		//EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::Interact);
 	}
@@ -135,6 +138,16 @@ void AMGP_2526Character::DoJumpEnd()
 	// signal the character to stop jumping
 	StopJumping();
 }
+
+void AMGP_2526Character::DoShoot()
+{
+	// signal the character to shoot
+	UE_LOG(LogTemp, Warning, TEXT("I am shooting"));
+	
+
+}
+
+
 
 
 //testforgit

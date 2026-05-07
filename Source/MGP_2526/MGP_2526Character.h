@@ -49,7 +49,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
 
-	UPROPERTY(EditAnywhere, Category = "Input")
+	/** Shoot Input Action */
+	UPROPERTY(EditAnywhere, Category ="Input")
 	UInputAction* Shoot;
 
 public:
@@ -89,6 +90,10 @@ public:
 	/** Handles jump pressed inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+	/** Handles shoot inputs from either controls or UI interfaces */
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	virtual void DoShoot();
 
 public:
 
