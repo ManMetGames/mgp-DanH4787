@@ -2,7 +2,10 @@
 
 
 #include "Projectile.h"
+
 #include "GameFramework/ProjectileMovementComponent.h" 
+#include "Engine/LocalPlayer.h"
+
 
 // Sets default values
 AProjectile::AProjectile()
@@ -15,8 +18,8 @@ AProjectile::AProjectile()
 
 
 	ProjectileComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Component"));
-	ProjectileComponent->InitialSpeed = 2000.f;
-	ProjectileComponent->MaxSpeed = 5000.f;
+	ProjectileComponent->InitialSpeed = 10000.f;
+	ProjectileComponent->MaxSpeed = 15000.f;
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +33,9 @@ void AProjectile::BeginPlay()
 void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	
+	
 
 }
 

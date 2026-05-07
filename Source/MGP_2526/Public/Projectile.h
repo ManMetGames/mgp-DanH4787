@@ -30,4 +30,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UProjectileMovementComponent* ProjectileComponent;
+
+	
 };

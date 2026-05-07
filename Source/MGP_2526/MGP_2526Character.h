@@ -53,6 +53,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category ="Input")
 	UInputAction* Shoot;
 
+	/** Reload Input Action/
+
 public:
 
 	/** Constructor */
@@ -94,6 +96,8 @@ public:
 	/** Handles shoot inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	virtual void DoShoot();
+
+
 
 public:
 
