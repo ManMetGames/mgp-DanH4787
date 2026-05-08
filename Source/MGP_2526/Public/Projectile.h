@@ -14,24 +14,28 @@ UCLASS()
 class MGP_2526_API AProjectile : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AProjectile();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	//Movement component for the projectile
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+	class UProjectileMovementComponent* ProjectileMovement;
 
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPETY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 	
 
+	//Collision component for the projectile
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Collision")
+	class USphereComponent* CollisionComp;
 
-	
 };

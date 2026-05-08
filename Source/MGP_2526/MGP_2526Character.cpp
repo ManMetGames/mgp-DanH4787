@@ -12,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "MGP_2526.h"
+#include "Projectile.h"
 
 AMGP_2526Character::AMGP_2526Character()
 {
@@ -143,8 +144,13 @@ void AMGP_2526Character::DoJumpEnd()
 
 void AMGP_2526Character::DoShoot()
 {
-	
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Shoot Pressed"));
+		
+	FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.0f;
+
+	FRotator SpawnRotation = GetControlRotation();
 	//signals character to shoot
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, GetActorLocation() + GetActorForwardVector() * 100.0f, GetControlRotation());
 }
 
 

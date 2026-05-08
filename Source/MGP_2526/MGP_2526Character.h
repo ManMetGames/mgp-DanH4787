@@ -53,6 +53,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category ="Input")
 	UInputAction* Shoot;
 
+	/** The creation of a projectile*/
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	TSubclassOf<class AProjectile> ProjectileClass;
+
 	/** Reload Input Action/
 
 public:
@@ -96,6 +100,8 @@ public:
 	/** Handles shoot inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	virtual void DoShoot();
+
+	
 
 
 
