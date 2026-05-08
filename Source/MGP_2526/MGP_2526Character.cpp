@@ -146,7 +146,8 @@ void AMGP_2526Character::DoShoot()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Shoot Pressed"));
 		
-	FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.0f + FVector(0,0,+200);
+	FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.0f + FVector(0.f,0.f,2000.f);
+	//FVector SpawnLocation = GetActorMesh()->GetSocketLocation("GunSocket");
 
 	FRotator SpawnRotation = GetControlRotation();
 	//signals character to shoot
