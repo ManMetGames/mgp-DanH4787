@@ -144,10 +144,7 @@ void AMGP_2526Character::DoJumpEnd()
 void AMGP_2526Character::DoShoot()
 {
 	
-	// signal the character to shoot
-	UE_LOG(LogMGP_2526, Warning, TEXT("Pew Pew"));
-	
-
+	//signals character to shoot
 }
 
 

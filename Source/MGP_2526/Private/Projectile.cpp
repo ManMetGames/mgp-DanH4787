@@ -20,6 +20,7 @@ AProjectile::AProjectile()
 	ProjectileComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Component"));
 	ProjectileComponent->InitialSpeed = 10000.f;
 	ProjectileComponent->MaxSpeed = 15000.f;
+	
 }
 
 // Called when the game starts or when spawned
@@ -27,15 +28,25 @@ void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
+	
+	
 }
 
 // Called every frame
 void AProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	float Velocity = GetVelocity().Size();
 	
 	
-	
+	if(Velocity < 0)
+	{
+		Destroy();
+	}
 
 }
+
+
+	
 
