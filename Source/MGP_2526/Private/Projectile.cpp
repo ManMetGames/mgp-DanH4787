@@ -22,8 +22,8 @@ AProjectile::AProjectile()
 
 	//Projectile movement settings
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
-	ProjectileMovement->InitialSpeed = 500.f;
-	ProjectileMovement->MaxSpeed = 500.f;
+	ProjectileMovement->InitialSpeed = 5000.f;
+	ProjectileMovement->MaxSpeed = 5000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
 	//Die after 3 seconds by default
