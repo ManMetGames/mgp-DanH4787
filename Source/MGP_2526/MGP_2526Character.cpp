@@ -77,7 +77,7 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		//Shooting
 		EnhancedInputComponent->BindAction(Shoot, ETriggerEvent::Triggered, this, &AMGP_2526Character::DoShoot);
 
-		//EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::Interact);
+		
 	}
 	else
 	{

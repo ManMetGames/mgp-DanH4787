@@ -11,22 +11,25 @@
 // Sets default values
 AProjectile::AProjectile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this actor to call Tick() every frame. 
 	PrimaryActorTick.bCanEverTick = false;
 	//Create collision sphere for detecting hits with other actors
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
+	//Gives the sphere a radius that can be adjusted in BP
 	CollisionComp->InitSphereRadius(5.0f);
 	CollisionComp->BodyInstance.SetCollisionProfileName("Projectile");
+	//
 	CollisionComp->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	RootComponent = CollisionComp;
 
 	//Projectile movement settings
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
+	//These can be checked in the blueprint component for the projectile
 	ProjectileMovement->InitialSpeed = 5000.f;
 	ProjectileMovement->MaxSpeed = 5000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
-	//Die after 3 seconds by default
+	//Die after 3 seconds by default, used as a fail safe to prevent projectiles from existing indefinitely
 	InitialLifeSpan = 3.0f;
 }
 
@@ -37,13 +40,10 @@ void AProjectile::BeginPlay()
 }
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	//Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
-	{
-		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
-	}
+	//If the projectile hits an actor that isn't itself or its owner, destroy the projectile
 	Destroy();
 }
+
 // Called every frame
 void AProjectile::Tick(float DeltaTime)
 {
