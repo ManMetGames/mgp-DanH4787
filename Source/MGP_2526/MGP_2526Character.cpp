@@ -48,6 +48,9 @@ AMGP_2526Character::AMGP_2526Character()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	//creating the reference for the muzzle location of the gun
+	Muzzle = CreateDefaultSubobject<USceneComponent>(TEXT("Muzzle"));
+	Muzzle->SetupAttachment(GetMesh());
 	int Ammo = 10;
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
