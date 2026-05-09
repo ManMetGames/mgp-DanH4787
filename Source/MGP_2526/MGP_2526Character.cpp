@@ -147,14 +147,15 @@ void AMGP_2526Character::DoJumpEnd()
 
 void AMGP_2526Character::DoShoot()
 {
+	//Lets us know we are shooting in the output log
 	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Shoot Pressed"));
 		
-	FVector SpawnLocation = GetActorLocation() + GetActorForwardVector() * 100.0f + FVector(0.f,0.f,2000.f);
-	//FVector SpawnLocation = GetActorMesh()->GetSocketLocation("GunSocket");
+	//Gets muzzle spawn location for projectile
+	FVector SpawnLocation = Muzzle->GetComponentLocation();
+	
 
-	FRotator SpawnRotation = GetControlRotation();
 	//signals character to shoot
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, GetActorLocation() + GetActorForwardVector() * 100.0f, GetControlRotation());
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, GetControlRotation());
 }
 
 
