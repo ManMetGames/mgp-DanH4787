@@ -2,10 +2,13 @@
 
 #pragma once
 
+
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "Components/SceneComponent.h"
 #include "MGP_2526Character.generated.h"
+
 
 class USpringArmComponent;
 class UCameraComponent;
@@ -30,6 +33,8 @@ class AMGP_2526Character : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
+
+	
 	
 protected:
 
@@ -49,9 +54,21 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
 
-public:
+	/** Shoot Input Action */
+	UPROPERTY(EditAnywhere, Category ="Input")
+	UInputAction* Shoot;
 
+	/** The creation of a projectile*/
+	UPROPERTY(EditAnywhere, Category = "Projectile")
+	TSubclassOf<class AProjectile> ProjectileClass;
+
+	
+public:
+	/** The spawn location for bullets set up//attached in the blueprint*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
+	USceneComponent* Muzzle;
 	/** Constructor */
+
 	AMGP_2526Character();	
 
 protected:
@@ -66,6 +83,8 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	
 
 public:
 
@@ -84,6 +103,14 @@ public:
 	/** Handles jump pressed inputs from either controls or UI interfaces */
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
+
+	/** Handles shoot inputs from either controls or UI interfaces */
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	virtual void DoShoot();
+
+	
+
+
 
 public:
 

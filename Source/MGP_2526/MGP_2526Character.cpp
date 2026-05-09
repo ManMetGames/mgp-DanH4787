@@ -1,3 +1,4 @@
+
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MGP_2526Character.h"
@@ -11,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "MGP_2526.h"
+#include "Projectile.h"
 
 AMGP_2526Character::AMGP_2526Character()
 {
@@ -46,12 +48,18 @@ AMGP_2526Character::AMGP_2526Character()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	//creating the reference for the muzzle location of the gun
+	Muzzle = CreateDefaultSubobject<USceneComponent>(TEXT("Muzzle"));
+	Muzzle->SetupAttachment(GetMesh());
+	int Ammo = 10;
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
 void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Test2"));
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
@@ -65,6 +73,11 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::Look);
+
+		//Shooting
+		EnhancedInputComponent->BindAction(Shoot, ETriggerEvent::Triggered, this, &AMGP_2526Character::DoShoot);
+
+		
 	}
 	else
 	{
@@ -131,3 +144,20 @@ void AMGP_2526Character::DoJumpEnd()
 	// signal the character to stop jumping
 	StopJumping();
 }
+
+void AMGP_2526Character::DoShoot()
+{
+	//Lets us know we are shooting in the output log
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Shoot Pressed"));
+		
+	//Gets muzzle spawn location for projectile
+	FVector SpawnLocation = Muzzle->GetComponentLocation();
+	
+
+	//signals character to shoot
+	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, GetControlRotation());
+}
+
+
+
+//testforgit
